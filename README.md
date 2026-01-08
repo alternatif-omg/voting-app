@@ -1,65 +1,96 @@
-# Example Voting App
+# Voting App (Forked & Extended)
 
-A simple distributed application running across multiple Docker containers.
+This is a fork of [Original Voting App](https://github.com/originalusername/voting-app) with additional features and DevOps improvements.
 
-## Getting started
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Fork Changes](#fork-changes)
+3. [Architecture](#architecture)
+4. [Getting Started](#getting-started)
+5. [Docker Setup](#docker-setup)
+6. [Deployment](#deployment)
+7. [Contributing](#contributing)
+8. [License](#license)
 
-Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows. [Docker Compose](https://docs.docker.com/compose) will be automatically installed. On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/).
+## Project Overview
+The original project is a voting application designed for reliability and scalability, including:
 
-This solution uses Python, Node.js, .NET, with Redis for messaging and Postgres for storage.
+- Web application for users to cast votes
+- Backend APIs to handle vote processing and results
+- DevOps-ready setup using Docker and Docker Compose
+- CI/CD pipeline for automated testing and deployment
 
-Run in this directory to build and run the app:
+## Fork Changes
+In this fork, the following improvements were added:
 
-```shell
-docker compose up
-```
-
-The `vote` app will be running at [http://localhost:8080](http://localhost:8080), and the `results` will be at [http://localhost:8081](http://localhost:8081).
-
-Alternately, if you want to run it on a [Docker Swarm](https://docs.docker.com/engine/swarm/), first make sure you have a swarm. If you don't, run:
-
-```shell
-docker swarm init
-```
-
-Once you have your swarm, in this directory run:
-
-```shell
-docker stack deploy --compose-file docker-stack.yml vote
-```
-
-## Run the app in Kubernetes
-
-The folder k8s-specifications contains the YAML specifications of the Voting App's services.
-
-Run the following command to create the deployments and services. Note it will create these resources in your current namespace (`default` if you haven't changed it.)
-
-```shell
-kubectl create -f k8s-specifications/
-```
-
-The `vote` web app is then available on port 31000 on each host of the cluster, the `result` web app is available on port 31001.
-
-To remove them, run:
-
-```shell
-kubectl delete -f k8s-specifications/
-```
+- Enhanced Docker Compose setup for CI/CD pipelines
+- Monitoring and logging containers included
+- Updated architecture to support DevOps full pipeline
+- README improvements and documentation updates
 
 ## Architecture
+The system is modular and containerized:
 
-![Architecture diagram](architecture.excalidraw.png)
+- **Frontend**: User interface
+- **Backend**: API server and database handling
+- **Database**: Persistent storage for votes and results
+- **Monitoring & Logging**: Optional containers for metrics
 
-* A front-end web app in [Python](/vote) which lets you vote between two options
-* A [Redis](https://hub.docker.com/_/redis/) which collects new votes
-* A [.NET](/worker/) worker which consumes votes and stores them in…
-* A [Postgres](https://hub.docker.com/_/postgres/) database backed by a Docker volume
-* A [Node.js](/result) web app which shows the results of the voting in real time
+[Frontend] --> [Backend API] --> [Database]
+|
+v
+[Monitoring / Logging]
 
-## Notes
+markdown
+Copy code
 
-The voting application only accepts one vote per client browser. It does not register additional votes if a vote has already been submitted from a client.
+Optional: Add an architecture diagram such as `architecture.excalidraw.png`:
 
-This isn't an example of a properly architected perfectly designed distributed app... it's just a simple
-example of the various types of pieces and languages you might see (queues, persistent data, etc), and how to
-deal with them in Docker at a basic level.
+![Architecture](architecture.excalidraw.png)
+
+## Getting Started
+### Prerequisites
+- Docker
+- Docker Compose
+- Git
+
+### Clone the Repository
+```bash
+git clone git@github.com:yourusername/voting-app.git
+cd voting-app
+Docker Setup
+Build and Run
+bash
+Copy code
+docker-compose up --build
+Available Docker Compose Files
+docker-compose.yml – Default services
+
+docker-compose.ci.yml – CI-specific configuration
+
+docker-compose.monitoring.yaml – Monitoring services
+
+docker-compose.images.yml – Image-building services
+
+Docker Stack Deployment
+bash
+Copy code
+docker stack deploy -c docker-stack.yml voting-app
+Deployment Notes
+Make sure your environment variables are configured.
+
+Recommended to use SSH keys for repository access.
+
+Optional: Set up monitoring for logs and metrics using Prometheus / Grafana.
+
+Contributing
+Fork the repository
+
+Create a feature branch
+
+Commit your changes
+
+Open a Pull Request
+
+License
+This fork follows the license of the original project: MIT License.
