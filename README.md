@@ -1,32 +1,35 @@
-# Voting App (Forked & Extended)
+# Voting App (Forked & DevOps Ready)
 
-This is a fork of [Original Voting App](https://github.com/originalusername/voting-app) with additional features and DevOps improvements.
+This is a fork of [Original Voting App](https://github.com/originalusername/voting-app) with added DevOps configurations and enhancements.
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
-2. [Fork Changes](#fork-changes)
+2. [Fork Changes / DevOps Additions](#fork-changes--devops-additions)
 3. [Architecture](#architecture)
 4. [Getting Started](#getting-started)
 5. [Docker Setup](#docker-setup)
-6. [Deployment](#deployment)
-7. [Contributing](#contributing)
-8. [License](#license)
+6. [Screenshots](#screenshots)
+7. [Deployment Notes](#deployment-notes)
+8. [Contributing](#contributing)
+9. [License](#license)
 
 ## Project Overview
-The original project is a voting application designed for reliability and scalability, including:
+The original project is a voting application designed for reliability and scalability:
 
 - Web application for users to cast votes
 - Backend APIs to handle vote processing and results
 - DevOps-ready setup using Docker and Docker Compose
-- CI/CD pipeline for automated testing and deployment
 
-## Fork Changes
-In this fork, the following improvements were added:
+This fork focuses on adding DevOps configurations to demonstrate skills in containerization, CI/CD, and monitoring.
 
-- Enhanced Docker Compose setup for CI/CD pipelines
-- Monitoring and logging containers included
-- Updated architecture to support DevOps full pipeline
-- README improvements and documentation updates
+## Fork Changes / DevOps Additions
+- Docker Compose setup for all services
+- Monitoring configurations (Prometheus / Grafana)
+- CI/CD pipeline configuration (GitHub Actions)
+- Architecture diagrams and professional documentation
+- Improved README and instructions for setup
+
+> **Note:** The CI/CD and monitoring setups are configured and ready, but not deployed live.
 
 ## Architecture
 The system is modular and containerized:
@@ -34,7 +37,7 @@ The system is modular and containerized:
 - **Frontend**: User interface
 - **Backend**: API server and database handling
 - **Database**: Persistent storage for votes and results
-- **Monitoring & Logging**: Optional containers for metrics
+- **Monitoring & Logging**: Configured, ready for deployment
 
 [Frontend] --> [Backend API] --> [Database]
 |
@@ -76,12 +79,19 @@ Docker Stack Deployment
 bash
 Copy code
 docker stack deploy -c docker-stack.yml voting-app
+Screenshots
+Docker Build / Up
+
+Prometheus / Grafana Configuration
+
+Note: Screenshots demonstrate that the DevOps configurations are working locally.
+
 Deployment Notes
-Make sure your environment variables are configured.
+Environment variables should be configured correctly
 
-Recommended to use SSH keys for repository access.
+SSH keys recommended for repository access
 
-Optional: Set up monitoring for logs and metrics using Prometheus / Grafana.
+Monitoring and CI/CD are configured but not yet live
 
 Contributing
 Fork the repository
@@ -93,4 +103,4 @@ Commit your changes
 Open a Pull Request
 
 License
-This fork follows the license of the original project: MIT License.
+This fork follows the license of the original project: MIT License
